@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang=en data-rh=lang>
+<!--
+ Page saved with SingleFile 
+ url: https://towardsdatascience.com/19-helpful-python-syntax-patterns-for-coding-interviews-3704c15b758f 
+ saved date: Sat Feb 26 2022 19:32:01 GMT-0800 (Pacific Standard Time)
+-->
+<meta charset=utf-8>
+<title>20+ helpful Python syntax patterns for coding interviews | Towards Data Science</title>
+<meta data-rh=true property=article:published_time content=2021-10-24T18:27:11.607Z>
+<meta data-rh=true name=title content="20+ helpful Python syntax patterns for coding interviews | Towards Data Science">
+<meta data-rh=true name=description content="Here are Python syntax and functions commonly used in coding interviews—covers lists, sorting, dictionaries, heaps, tries, dynamic programming, and more">
+<meta data-rh=true property=og:url content=https://towardsdatascience.com/19-helpful-python-syntax-patterns-for-coding-interviews-3704c15b758f>
+<style data-fela-rehydration=570 data-fela-type=RULE>
+html{box-sizing:border-box}*,*:before,*:after{box-sizing:inherit}body{margin:0;padding:0;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased;color:rgba(0,0,0,0.8);position:relative;min-height:100vh}h1,h2,ul,p,pre{margin:0}ul{padding:0;list-style:none;list-style-image:none}a{-webkit-tap-highlight-color:transparent}:root{--reach-tabs:1;--reach-menu-button:1}@-webkit-keyframes
+k1{0%{opacity:0;transform:translateY(-60px)}100%{opacity:1;transform:translateY(0px)}}@-moz-keyframes
+k1{0%{opacity:0;transform:translateY(-60px)}100%{opacity:1;transform:translateY(0px)}}@keyframes
+k1{0%{opacity:0;transform:translateY(-60px)}100%{opacity:1;transform:translateY(0px)}}@-webkit-keyframes
+k2{0%{opacity:1;transform:translateY(0px)}100%{opacity:0;transform:translateY(-60px)}}@-moz-keyframes
+k2{0%{opacity:1;transform:translateY(0px)}100%{opacity:0;transform:translateY(-60px)}}@keyframes
+k2{0%{opacity:1;transform:translateY(0px)}100%{opacity:0;transform:translateY(-60px)}}@-webkit-keyframes
+k3{0%{opacity:0.8}50%{opacity:0.5}100%{opacity:0.8}}@-moz-keyframes
+k3{0%{opacity:0.8}50%{opacity:0.5}100%{opacity:0.8}}@keyframes
+k3{0%{opacity:0.8}50%{opacity:0.5}100%{opacity:0.8}}.b{font-weight:400}.n{display:flex}.p{justify-content:center}.s{display:block}.v{width:100%}.ba{min-width:0px}
+.bf{font-family:sohne,"Helvetica Neue",Helvetica,Arial,sans-serif}.ci{font-weight:inherit}.dn{font-size:16px}.dx{color:rgb(117,117,117)}.ek{color:inherit}.gn{word-break:break-word}.gr{max-width:680px}.gs{line-height:1.23}.gt{letter-spacing:0px}.gu{font-style:normal}.gv{font-weight:700}.hq{margin-bottom:-0.27em}.hr{color:rgb(41,41,41)}.hs{line-height:1.394}.ii{margin-bottom:-0.42em}.kd{line-height:1.58}.ke{letter-spacing:-0.004em}.kf{font-family:charter,Georgia,Cambria,"Times New Roman",Times,serif}.ky{margin-bottom:-0.46em}.kz{line-height:1.12}.la{letter-spacing:-0.022em}.lb{font-weight:500}.lu{margin-bottom:-0.28em}.lv{line-height:1.18}.md{margin-bottom:-0.31em}.mj{list-style-type:disc}.mk{margin-left:30px}.ml{padding-left:0px}.mm{background-color:rgb(242,242,242)}.mn{padding:2px
+4px}.mo{font-size:75%}.mq{font-family:Menlo,Monaco,"Courier New",Courier,monospace}.mw{text-decoration:underline}.nm{padding:20px}.nn{background:rgb(242,242,242)}.no{overflow-x:auto}.np{margin-top:-0.09em}.nq{margin-bottom:-0.09em}.nr{white-space:pre-wrap}
+</style>
+<style data-fela-rehydration=570 data-fela-type=RULE media="all and (min-width: 1080px)">
+    body { background-color: lightyellow; }
+    code { color: cadetblue; font-weight: bold !important; }
+    pre { background-color: lightgray; padding: 1rem; }
+    .ay { margin: 0px 64px }
+    .hm { font-size: 46px }
+    .hn { margin-top: 0.6em }
+    .ho { line-height: 56px }
+    .hp { letter-spacing: -0.011em }
+    .if { font-size: 22px }
+    .ig { margin-top: 0.92em }
+    .ih { line-height: 28px }
+    .ku { font-size: 21px }
+    .kv { margin-top: 2em }
+    .kw { line-height: 32px }
+    .kx { letter-spacing: -0.003em }
+    .lq { font-size: 30px }
+    .lr { margin-top: 1.95em }
+    .ls { line-height: 36px }
+    .lt { letter-spacing: 0px }
+    .mc { margin-top: 1.72em }
+    .mi { margin-top: 0.86em }
+    .mv { margin-top: 1.05em }
+    .nc { margin-top: 56px }
+    .nw { margin-top: 1.91em }
+</style>
+<style data-fela-rehydration=570 data-fela-type=RULE media="all and (max-width: 551.98px)">
+    .au { margin: 0px 24px }
+    .gw { font-size: 32px }
+    .gx { margin-top: 0.64em }
+    .gy { line-height: 40px }
+    .gz { letter-spacing: -0.016em }
+    .ht { font-size: 18px }
+    .hu { margin-top: 0.79em }
+    .hv { line-height: 24px }
+    .kg { margin-top: 1.56em }
+    .kh { line-height: 28px }
+    .ki { letter-spacing: -0.003em }
+    .lc { font-size: 22px }
+    .ld { margin-top: 1.2em }
+    .le { letter-spacing: 0px }
+    .lw { font-size: 20px }
+    .lx { margin-top: 1.23em }
+    .me { margin-top: 0.67em }
+    .mr { margin-top: 1.34em }
+    .my { margin-top: 40px }
+    .ns { margin-top: 1.41em }
+</style>
+<style data-fela-rehydration=570 data-fela-type=RULE media="all and (min-width: 904px) and (max-width: 1079.98px)">
+    .ax { margin: 0px 64px }
+    .hi { font-size: 46px }
+    .hj { margin-top: 0.6em }
+    .hk { line-height: 56px }
+    .hl { letter-spacing: -0.011em }
+    .ic { font-size: 22px }
+    .id { margin-top: 0.92em }
+    .ie { line-height: 28px }
+    .kq { font-size: 21px }
+    .kr { margin-top: 2em }
+    .ks { line-height: 32px }
+    .kt { letter-spacing: -0.003em }
+    .lm { font-size: 30px }
+    .ln { margin-top: 1.95em }
+    .lo { line-height: 36px }
+    .lp { letter-spacing: 0px }
+    .mb { margin-top: 1.72em }
+    .mh { margin-top: 0.86em }
+    .mu { margin-top: 1.05em }
+    .nb { margin-top: 56px }
+    .nv { margin-top: 1.91em }
+</style>
+<style data-fela-rehydration=570 data-fela-type=RULE media="all and (min-width: 728px) and (max-width: 903.98px)">
+    .aw { margin: 0px 48px }
+    .he { font-size: 46px }
+    .hf { margin-top: 0.6em }
+    .hg { line-height: 56px }
+    .hh { letter-spacing: -0.011em }
+    .hz { font-size: 22px }
+    .ia { margin-top: 0.92em }
+    .ib { line-height: 28px }
+    .km { font-size: 21px }
+    .kn { margin-top: 2em }
+    .ko { line-height: 32px }
+    .kp { letter-spacing: -0.003em }
+    .li { font-size: 30px }
+    .lj { margin-top: 1.95em }
+    .lk { line-height: 36px }
+    .ll { letter-spacing: 0px }
+    .ma { margin-top: 1.72em }
+    .mg { margin-top: 0.86em }
+    .mt { margin-top: 1.05em }
+    .na { margin-top: 56px }
+    .nu { margin-top: 1.91em }
+</style>
+<style data-fela-rehydration=570 data-fela-type=RULE media="all and (min-width: 552px) and (max-width: 727.98px)">
+    .av { margin: 0px 24px }
+    .ha { font-size: 32px }
+    .hb { margin-top: 0.64em }
+    .hc { line-height: 40px }
+    .hd { letter-spacing: -0.016em }
+    .hw { font-size: 18px }
+    .hx { margin-top: 0.79em }
+    .hy { line-height: 24px }
+    .kj { margin-top: 1.56em }
+    .kk { line-height: 28px }
+    .kl { letter-spacing: -0.003em }
+    .lf { font-size: 22px }
+    .lg { margin-top: 1.2em }
+    .lh { letter-spacing: 0px }
+    .ly { font-size: 20px }
+    .lz { margin-top: 1.23em }
+    .mf { margin-top: 0.67em }
+    .ms { margin-top: 1.34em }
+    .mz { margin-top: 40px }
+    .nt { margin-top: 1.41em }
+</style>
+<script type=application/ld+json data-rh=true>
+    {"@context":"http://schema.org","@type":"NewsArticle","image":["https://miro.medium.com/max/1200/1*faHUgLDOUxGHK-IE9lkthw.png"],"url":"https://towardsdatascience.com/19-helpful-python-syntax-patterns-for-coding-interviews-3704c15b758f","dateCreated":"2021-05-31T23:22:07.112Z","datePublished":"2021-05-31T23:22:07.112Z","dateModified":"2022-01-06T15:44:54.217Z","headline":"20+ helpful Python syntax patterns for coding interviews | Towards Data Science","name":"20+ helpful Python syntax patterns for coding interviews | Towards Data Science","description":"Here are Python syntax and functions commonly used in coding interviews—covers lists, sorting, dictionaries, heaps, tries, dynamic programming, and more","identifier":"3704c15b758f","author":{"@type":"Person","name":"Lakshay Akula","url":"https://towardsdatascience.com/@lakshayakula"},"creator":["Lakshay Akula"],"publisher":{"@type":"Organization","name":"Towards Data Science","url":"towardsdatascience.com","logo":{"@type":"ImageObject","width":165,"height":60,"url":"https://miro.medium.com/max/165/1*mG6i4Bh_LgixUYXJgQpYsg@2x.png"}},"mainEntityOfPage":"https://towardsdatascience.com/19-helpful-python-syntax-patterns-for-coding-interviews-3704c15b758f","isAccessibleForFree":"False","hasPart":{"@type":"WebPageElement","isAccessibleForFree":"False","cssSelector":".meteredContent"}}
+</script>
+<link rel=icon
+    href=data:image/png;base64,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
+    data-rh=true>
+<meta http-equiv=content-security-policy
+    content="default-src 'none'; font-src 'self' data:; img-src 'self' data:; style-src 'unsafe-inline'; media-src 'self' data:; script-src 'unsafe-inline' data:;">
+
+<body>
+    <div class="n p">
+        <div class="au av aw ax ay gr ba v">
+            <div>
+                <h1 id=bee4
+                    class="pw-post-title gs gt gu bf gv gw gx gy gz ha hb hc hd he hf hg hh hi hj hk hl hm hn ho hp hq hr"
+                    data-selectable-paragraph>20+ helpful Python syntax patterns for coding interviews</h1>
+            </div>
+            <div>
+                <h2 id=5f46
+                    class="pw-subtitle-paragraph hs gt gu bf b ht hu hv hw hx hy hz ia ib ic id ie if ig ih ii dx"
+                    data-selectable-paragraph>Get more confident and save time in interviews by learning these common
+                    coding interview patterns in Python</h2>
+            </div>
+            <h1 id=f88a class="kz la gu bf lb lc ld kh le lf lg kk lh li lj lk ll lm ln lo lp lq lr ls lt lu hr"
+                data-selectable-paragraph>Part 1: Lists</h1>
+            <h2 id=53ce class="lv la gu bf lb lw lx hv le ly lz hy lh hz ma ib ll ic mb ie lp if mc ih lt md hr"
+                data-selectable-paragraph>1. Sorting</h2>
+            <ul>
+                <li id=e828
+                    class="kd ke gu kf b ht me kh ki hw mf kk kl km mg ko kp kq mh ks kt ku mi kw kx ky mj mk ml hr"
+                    data-selectable-paragraph><code class="mm mn mo mp mq b">sorted(numbers)</code> will return the
+                    sorted numbers in ascending order and leave the original numbers unchanged. You can also use <code
+                        class="mm mn mo mp mq b">numbers.sort()</code> which sorts numbers in-place and mutates <code
+                        class="mm mn mo mp mq b">numbers</code> in-place
+                <li id=0008
+                    class="kd ke gu kf b ht mr kh ki hw ms kk kl km mt ko kp kq mu ks kt ku mv kw kx ky mj mk ml hr"
+                    data-selectable-paragraph><code class="mm mn mo mp mq b">sorted</code> has two optional arguments,
+                    <code class="mm mn mo mp mq b">key</code> and <code class="mm mn mo mp mq b">reverse</code>. <code
+                        class="mm mn mo mp mq b">key</code> lets you modify the values for comparison. So <code
+                        class="mm mn mo mp mq b">sorted(..., key=str.lower)</code> will sort case insensitive. <code
+                        class="mm mn mo mp mq b">reverse</code> lets you sort in descending order, so <code
+                        class="mm mn mo mp mq b">sorted(..., reverse=True)</code> is descending.
+                <li id=2178
+                    class="kd ke gu kf b ht mr kh ki hw ms kk kl km mt ko kp kq mu ks kt ku mv kw kx ky mj mk ml hr"
+                    data-selectable-paragraph><code class="mm mn mo mp mq b">sorted</code> uses Timsort which has <code
+                        class="mm mn mo mp mq b">O(nlogn)</code> average- and worst-case time complexity, uses <code
+                        class="mm mn mo mp mq b">O(n)</code> space (similar to merge sort), and has a best-case <code
+                        class="mm mn mo mp mq b">O(n)</code> time complexity (similar to insertion sort).
+            </ul>
+            <h2 id=1fa8 class="lv la gu bf lb lw lx hv le ly lz hy lh hz ma ib ll ic mb ie lp if mc ih lt md hr"
+                data-selectable-paragraph><strong class=ci>2. List slicing syntax</strong></h2>
+            <ul>
+                <li id=074a
+                    class="kd ke gu kf b ht me kh ki hw mf kk kl km mg ko kp kq mh ks kt ku mi kw kx ky mj mk ml hr"
+                    data-selectable-paragraph>General syntax is <code
+                        class="mm mn mo mp mq b">iterable[start:stop:step]</code>
+                <li id=94f5
+                    class="kd ke gu kf b ht mr kh ki hw ms kk kl km mt ko kp kq mu ks kt ku mv kw kx ky mj mk ml hr"
+                    data-selectable-paragraph><code class="mm mn mo mp mq b">list[i:j]</code> returns from index<code
+                        class="mm mn mo mp mq b">i</code>, up to <strong class="kf gv">but not including</strong> <code
+                        class="mm mn mo mp mq b">j</code>
+                <li id=9cfb
+                    class="kd ke gu kf b ht mr kh ki hw ms kk kl km mt ko kp kq mu ks kt ku mv kw kx ky mj mk ml hr"
+                    data-selectable-paragraph><code class="mm mn mo mp mq b">list[i:]</code> returns from index<code
+                        class="mm mn mo mp mq b">i</code>, up to the end
+                <li id=612e
+                    class="kd ke gu kf b ht mr kh ki hw ms kk kl km mt ko kp kq mu ks kt ku mv kw kx ky mj mk ml hr"
+                    data-selectable-paragraph><code class="mm mn mo mp mq b">list[:j]</code> returns from the start, up
+                    to index <code class="mm mn mo mp mq b">j</code>
+                <li id=f4d6
+                    class="kd ke gu kf b ht mr kh ki hw ms kk kl km mt ko kp kq mu ks kt ku mv kw kx ky mj mk ml hr"
+                    data-selectable-paragraph><code class="mm mn mo mp mq b">list[::2]</code> returns every other
+                    element from the list (indices <code class="mm mn mo mp mq b">0, 2, ..</code> )
+                <li id=0bad
+                    class="kd ke gu kf b ht mr kh ki hw ms kk kl km mt ko kp kq mu ks kt ku mv kw kx ky mj mk ml hr"
+                    data-selectable-paragraph><code class="mm mn mo mp mq b">list[::-1]</code> reverses the list—<a
+                        class="ek mw" href=https://www.geeksforgeeks.org/python-reversed-vs-1-which-one-is-faster/
+                        rel="noopener ugc nofollow" target=_blank>although list.reversed() is faster</a>
+            </ul>
+            <h2 id=03ba class="lv la gu bf lb lw lx hv le ly lz hy lh hz ma ib ll ic mb ie lp if mc ih lt md hr"
+                data-selectable-paragraph>3. List comprehension (i.e., Pythonic map and filter)</h2>
+            <ul>
+                <li id=4abd
+                    class="kd ke gu kf b ht me kh ki hw mf kk kl km mg ko kp kq mh ks kt ku mi kw kx ky mj mk ml hr"
+                    data-selectable-paragraph>Generic syntax is <code class="mm mn mo mp mq b">expression for member in
+                        iterable [if conditon]</code>
+                <li id=2de5
+                    class="kd ke gu kf b ht mr kh ki hw ms kk kl km mt ko kp kq mu ks kt ku mv kw kx ky mj mk ml hr"
+                    data-selectable-paragraph>E.g.,<code class="mm mn mo mp mq b">[element * 2 for element in list if
+                        element % 2 == 0]</code> will return a new list with every even element doubled from the
+                    original list
+                <li id=9f6a
+                    class="kd ke gu kf b ht mr kh ki hw ms kk kl km mt ko kp kq mu ks kt ku mv kw kx ky mj mk ml hr"
+                    data-selectable-paragraph>Use this instead of <code class="mm mn mo mp mq b">map</code>and <code
+                        class="mm mn mo mp mq b">filter</code> for better readability
+            </ul>
+            <h2 id=3a94 class="lv la gu bf lb lw lx hv le ly lz hy lh hz ma ib ll ic mb ie lp if mc ih lt md hr"
+                data-selectable-paragraph><strong class=ci>4. Using range</strong></h2>
+            <ul>
+                <li id=3c43
+                    class="kd ke gu kf b ht me kh ki hw mf kk kl km mg ko kp kq mh ks kt ku mi kw kx ky mj mk ml hr"
+                    data-selectable-paragraph>General syntax is <code class="mm mn mo mp mq b">range(start, stop,
+                        step)</code>
+                <li id=2f38
+                    class="kd ke gu kf b ht mr kh ki hw ms kk kl km mt ko kp kq mu ks kt ku mv kw kx ky mj mk ml hr"
+                    data-selectable-paragraph><code class="mm mn mo mp mq b">range(n)</code> for an iterable from <code
+                        class="mm mn mo mp mq b">0</code> to <code class="mm mn mo mp mq b">n — 1</code>
+                <li id=fc3e
+                    class="kd ke gu kf b ht mr kh ki hw ms kk kl km mt ko kp kq mu ks kt ku mv kw kx ky mj mk ml hr"
+                    data-selectable-paragraph><code class="mm mn mo mp mq b">range(i, j)</code> for an iterable from
+                    <code class="mm mn mo mp mq b">i</code> up to but not including <code
+                        class="mm mn mo mp mq b">j</code>
+                <li id=4168
+                    class="kd ke gu kf b ht mr kh ki hw ms kk kl km mt ko kp kq mu ks kt ku mv kw kx ky mj mk ml hr"
+                    data-selectable-paragraph><code class="mm mn mo mp mq b">range(i, j, n)</code> for the same as
+                    above, but every n-th element. Note that you need to specify <code
+                        class="mm mn mo mp mq b">start</code> and <code class="mm mn mo mp mq b">stop</code> if you want
+                    to use <code class="mm mn mo mp mq b">step</code>— <code class="mm mn mo mp mq b">range(10,
+                        step=2)</code> results in an error so do<code class="mm mn mo mp mq b">range(0, 10, 2)</code>
+                    instead—read <a class="ek mw"
+                        href=https://stackoverflow.com/questions/15875188/the-strange-arguments-of-range
+                        rel="noopener ugc nofollow" target=_blank>this</a> for more info behind why <code
+                        class="mm mn mo mp mq b">range</code> doesn’t support keyword arguments
+            </ul>
+            <h2 id=400a class="lv la gu bf lb lw lx hv le ly lz hy lh hz ma ib ll ic mb ie lp if mc ih lt md hr"
+                data-selectable-paragraph><strong class=ci>5. Creating lists of size N</strong></h2>
+            <ul>
+                <li id=cc75
+                    class="kd ke gu kf b ht me kh ki hw mf kk kl km mg ko kp kq mh ks kt ku mi kw kx ky mj mk ml hr"
+                    data-selectable-paragraph>You can use range and convert to a list (e.g., <code
+                        class="mm mn mo mp mq b">list(range(N))</code> or <code
+                        class="mm mn mo mp mq b">[*range(N)]</code> if you’re feeling fancy)
+                <li id=02f6
+                    class="kd ke gu kf b ht mr kh ki hw ms kk kl km mt ko kp kq mu ks kt ku mv kw kx ky mj mk ml hr"
+                    data-selectable-paragraph>For all of the same element use <code class="mm mn mo mp mq b">[element] *
+                        N</code>
+                <li id=2657
+                    class="kd ke gu kf b ht mr kh ki hw ms kk kl km mt ko kp kq mu ks kt ku mv kw kx ky mj mk ml hr"
+                    data-selectable-paragraph>E.g., <code class="mm mn mo mp mq b">[0] * 10</code> is a list of 10
+                    zeros, <code class="mm mn mo mp mq b">[None] * 5</code>is a list of 5 <code
+                        class="mm mn mo mp mq b">Nones</code>
+                <li id=f390
+                    class="kd ke gu kf b ht mr kh ki hw ms kk kl km mt ko kp kq mu ks kt ku mv kw kx ky mj mk ml hr"
+                    data-selectable-paragraph>For 2 or more dimensions, <strong class="kf gv">don’t</strong> do <code
+                        class="mm mn mo mp mq b">[[0] * 5] * 10</code> . The 10 rows will just be references to the one
+                    row with 5 values, so editing one row will change the other 9. Instead do, <code
+                        class="mm mn mo mp mq b">[[0 for i in range(5)] for j in range(10)]</code> .
+            </ul>
+            <h1 id=15f2 class="kz la gu bf lb lc ld kh le lf lg kk lh li lj lk ll lm ln lo lp lq lr ls lt lu hr"
+                data-selectable-paragraph><strong class=ci>Part 2: Iteration</strong></h1>
+            <h2 id=6134 class="lv la gu bf lb lw lx hv le ly lz hy lh hz ma ib ll ic mb ie lp if mc ih lt md hr"
+                data-selectable-paragraph><strong class=ci>6. Use enumerate</strong></h2>
+            <pre
+                class="my mz na nb nc nm nn no"><span id=9173 class="hr lv la gu mq b dn np nq s nr" data-selectable-paragraph># Use enumerate to get index and element<br># from an iterable<br>for index, element in enumerate(list):<br>  print(element + ' is at index ' + str(index))</span></pre>
+            <h2 id=f7b9 class="lv la gu bf lb lw lx hv le ly lz hy lh hz ma ib ll ic mb ie lp if mc ih lt md hr"
+                data-selectable-paragraph><a class="ek mw"
+                    href=https://www.educative.io/edpresso/how-to-emulate-a-do-while-loop-in-python
+                    rel="noopener ugc nofollow" target=_blank><strong class=ci>7. How to write a `do while`</strong></a>
+            </h2>
+            <p id=ce8c
+                class="pw-post-body-paragraph kd ke gu kf b ht me kh ki hw mf kk kl km mg ko kp kq mh ks kt ku mi kw kx ky gn hr"
+                data-selectable-paragraph>A <code class="mm mn mo mp mq b">do while</code> statement like this other
+                languages—
+                <pre
+                    class="my mz na nb nc nm nn no"><span id=b17c class="hr lv la gu mq b dn np nq s nr" data-selectable-paragraph>do {<br>  # Write code here<br>} while (condition)</span></pre>
+                <p id=1f54
+                    class="pw-post-body-paragraph kd ke gu kf b ht kg kh ki hw kj kk kl km kn ko kp kq kr ks kt ku kv kw kx ky gn hr"
+                    data-selectable-paragraph>is this in Python (not my favorite syntax, but needs to be done
+                    sometimes)—
+                    <pre
+                        class="my mz na nb nc nm nn no"><span id=e69b class="hr lv la gu mq b dn np nq s nr" data-selectable-paragraph>while True:<br>  # Write code here<br>  if condition:<br>    break</span></pre>
+                    <h2 id=62fd class="lv la gu bf lb lw lx hv le ly lz hy lh hz ma ib ll ic mb ie lp if mc ih lt md hr"
+                        data-selectable-paragraph>8. How to use generators</h2>
+                    <p id=46fa
+                        class="pw-post-body-paragraph kd ke gu kf b ht me kh ki hw mf kk kl km mg ko kp kq mh ks kt ku mi kw kx ky gn hr"
+                        data-selectable-paragraph>I <span id=rmm><span id=rmm><span id=rmm><span id=rmm><span
+                                            id=rmm><span id=rmm><span id=rmm><span id=rmm><span id=rmm><span
+                                                                id=rmm><span id=rmm><span id=rmm><span id=rmm><span
+                                                                                id=rmm><span id=rmm><span id=rmm><span
+                                                                                            id=rmm><span id=rmm><span
+                                                                                                    id=rmm><span
+                                                                                                        id=rmm><span
+                                                                                                            id=rmm><span
+                                                                                                                id=rmm><span
+                                                                                                                    id=rmm><span
+                                                                                                                        id=rmm><span
+                                                                                                                            id=rmm><span
+                                                                                                                                id=rmm><span
+                                                                                                                                    id=rmm><span
+                                                                                                                                        id=rmm><span
+                                                                                                                                            id=rmm><span
+                                                                                                                                                id=rmm><span
+                                                                                                                                                    id=rmm><span
+                                                                                                                                                        id=rmm><span
+                                                                                                                                                            id=rmm><span
+                                                                                                                                                                id=rmm><span
+                                                                                                                                                                    id=rmm><span
+                                                                                                                                                                        id=rmm>f</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span>ind
+                        generators most useful when looking up neighbors for a DFS or BFS problem with any graph-type
+                        structure. Take for example <a class="ek mw"
+                            href=https://leetcode.com/problems/number-of-islands/ rel="noopener ugc nofollow"
+                            target=_blank>Leetcode 200 — Number of Islands</a>. We can create a <code
+                            class="mm mn mo mp mq b">getNeighbors</code> helper function that returns a generator. This
+                        looks like
+                        <pre
+                            class="my mz na nb nc nm nn no"><span id=47ca class="hr lv la gu mq b dn np nq s nr" data-selectable-paragraph>def numIslands(grid) -&gt; int:        <br><strong class="mq gv">  def getNeighbors(i, j):<br>    for di, dj in [(1, 0), (-1, 0), (0, 1), (0, -1)]:<br>      ni, nj = i + di, j + dj<br>      if 0 &lt;= ni &lt; len(grid) and 0 &lt;= nj &lt; len(grid[i]):<br>        yield ni, nj</strong><br>            <br>  def dfs(i, j):            <br>    grid[i][j] = "-1"<br>    <strong class="mq gv">for new_i, new_j in getNeighbors(i, j):</strong><br>      if grid[new_i][new_j] == "1":<br>        dfs(new_i, new_j)<br>        <br>  islands = 0<br>  for i in range(len(grid)):<br>    for j in range(len(grid[0])):<br>       if grid[i][j] == "1":<br>         islands += 1<br>         dfs(i, j)<br>        <br>  return islands</span></pre>
+                        <h1 id=3ef6
+                            class="kz la gu bf lb lc ld kh le lf lg kk lh li lj lk ll lm ln lo lp lq lr ls lt lu hr"
+                            data-selectable-paragraph>Part 3. Higher-order functions</h1>
+                        <h2 id=9a13
+                            class="lv la gu bf lb lw lx hv le ly lz hy lh hz ma ib ll ic mb ie lp if mc ih lt md hr"
+                            data-selectable-paragraph>9. Use list comprehension instead of `map` or `filter`</h2>
+                        <pre
+                            class="my mz na nb nc nm nn no"><span id=0381 class="hr lv la gu mq b dn np nq s nr" data-selectable-paragraph>list = list(range(10)) # [0, 1, ..., 9]</span><span id=d8ca class="hr lv la gu mq b dn ns nt nu nv nw nq s nr" data-selectable-paragraph><strong class="mq gv"># Not very Pythonic 👎<br></strong>evens = filter(lambda x : x % 2 == 0, list) # [0, 2, ..., 8]<br>evens_doubled = map(lambda x : x*2, events) # [0, 4, ..., 16]</span><span id=9bb2 class="hr lv la gu mq b dn ns nt nu nv nw nq s nr" data-selectable-paragraph><strong class="mq gv"># Using list comprehension is Pythonic 👍<br></strong>evens_doubled = [x*2 for x in list if x % 2 == 0]</span></pre>
+                        <h2 id=1068
+                            class="lv la gu bf lb lw lx hv le ly lz hy lh hz ma ib ll ic mb ie lp if mc ih lt md hr"
+                            data-selectable-paragraph>10. Use reduce with caution</h2>
+                        <p id=772b
+                            class="pw-post-body-paragraph kd ke gu kf b ht me kh ki hw mf kk kl km mg ko kp kq mh ks kt ku mi kw kx ky gn hr"
+                            data-selectable-paragraph>Use reduce with caution— <code class="mm mn mo mp mq b">sum</code>
+                            , <code class="mm mn mo mp mq b">math.prod</code>, <code
+                                class="mm mn mo mp mq b">all</code>, and <code class="mm mn mo mp mq b">any</code> are
+                            more readable and it is worth writing out a more readable <code
+                                class="mm mn mo mp mq b">for</code> loop for anything more complex than that. <a
+                                class="ek mw" href="https://www.artima.com/weblogs/viewpost.jsp?thread=98196"
+                                rel="noopener ugc nofollow" target=_blank>Even Guido (the creator of Python) himself
+                                thought this</a>, which is why reduce has been demoted from the built-in library to the
+                            <code class="mm mn mo mp mq b">functools</code> library.<p id=cb9e
+                                class="pw-post-body-paragraph kd ke gu kf b ht kg kh ki hw kj kk kl km kn ko kp kq kr ks kt ku kv kw kx ky gn hr"
+                                data-selectable-paragraph>Nonetheless, it’s good to know. The syntax is <code
+                                    class="mm mn mo mp mq b">functools.reduce(function, iterable[, initializer])</code>
+                                . Some examples below
+                                <pre
+                                    class="my mz na nb nc nm nn no"><span id=6bbc class="hr lv la gu mq b dn np nq s nr" data-selectable-paragraph>from functools import reduce<br>nums = [1, 2, 3, 4, 5]<br>bools = [True, False, True, False, True]</span><span id=a409 class="hr lv la gu mq b dn ns nt nu nv nw nq s nr" data-selectable-paragraph># sum<br>reduce(lambda a, b: a + b, nums, 0) # 15</span><span id=e319 class="hr lv la gu mq b dn ns nt nu nv nw nq s nr" data-selectable-paragraph># math.prod<br>reduce(lambda a, b: a * b, nums, 1) # 120</span><span id=6525 class="hr lv la gu mq b dn ns nt nu nv nw nq s nr" data-selectable-paragraph># min<br>reduce(lambda a, b: a if a &lt; b else b, nums) # 1</span><span id=fbf9 class="hr lv la gu mq b dn ns nt nu nv nw nq s nr" data-selectable-paragraph># max<br>reduce(lambda a, b: a if a &gt; b else b, nums) # 5</span><span id=5b5f class="hr lv la gu mq b dn ns nt nu nv nw nq s nr" data-selectable-paragraph># any<br>reduce(lambda a, b: a or b, bools) # true</span><span id=9993 class="hr lv la gu mq b dn ns nt nu nv nw nq s nr" data-selectable-paragraph># all<br>reduce(lambda a, b: a and b, bools) # false</span></pre>
+                                <h2 id=4bad
+                                    class="lv la gu bf lb lw lx hv le ly lz hy lh hz ma ib ll ic mb ie lp if mc ih lt md hr"
+                                    data-selectable-paragraph>11. Using zip, zip_longest, and zip_shortest</h2>
+                                <p id=2ecf
+                                    class="pw-post-body-paragraph kd ke gu kf b ht me kh ki hw mf kk kl km mg ko kp kq mh ks kt ku mi kw kx ky gn hr"
+                                    data-selectable-paragraph><code class="mm mn mo mp mq b">zip</code> lets you iterate
+                                    through lists simultaneously
+                                    <pre
+                                        class="my mz na nb nc nm nn no"><span id=a2e0 class="hr lv la gu mq b dn np nq s nr" data-selectable-paragraph>list_a = [1, 2, 3, 4]<br>list_b = [10, 20, 30, 40]</span><span id=29de class="hr lv la gu mq b dn ns nt nu nv nw nq s nr" data-selectable-paragraph>list_sum = [a + b for a, b in <strong class="mq gv">zip(list_a, list_b)</strong>]<br># OR<br>list_sum = []<br>for a, b in zip(list_a, list_b):<br>  list_sum.append(a + b)</span><span id=5930 class="hr lv la gu mq b dn ns nt nu nv nw nq s nr" data-selectable-paragraph>print(list_sum) # [11, 22, 33, 44]</span></pre>
+                                    <p id=d765
+                                        class="pw-post-body-paragraph kd ke gu kf b ht kg kh ki hw kj kk kl km kn ko kp kq kr ks kt ku kv kw kx ky gn hr"
+                                        data-selectable-paragraph>For lists of unequal length, <code
+                                            class="mm mn mo mp mq b">zip</code> truncates the output to the shortest
+                                        list. <code class="mm mn mo mp mq b">zip_longest</code> in the <code
+                                            class="mm mn mo mp mq b">itertools</code> library lets you pad the smaller
+                                        list with a <code class="mm mn mo mp mq b">fill_value</code> so you can <code
+                                            class="mm mn mo mp mq b">zip</code> as if they were of equal length.
+                                        <pre
+                                            class="my mz na nb nc nm nn no"><span id=548b class="hr lv la gu mq b dn np nq s nr" data-selectable-paragraph>from itertools import zip_longest, zip_shortest</span><span id=9ba6 class="hr lv la gu mq b dn ns nt nu nv nw nq s nr" data-selectable-paragraph>short = [1, 2]<br>long = [10, 20, 30, 40]</span><span id=5ea6 class="hr lv la gu mq b dn ns nt nu nv nw nq s nr" data-selectable-paragraph>zip_short = [a + b for a, b in <strong class="mq gv">zip(short, long)</strong>]<br>print(zip_short) # [11, 22]<br>zip_long = [a + b for a, b in <strong class="mq gv">zip_longest(short, long, fillvalue=0)</strong>]<br>print(zip_long) # [11, 22, 30, 40]</span></pre>
+                                        <h1 id=60cd
+                                            class="kz la gu bf lb lc ld kh le lf lg kk lh li lj lk ll lm ln lo lp lq lr ls lt lu hr"
+                                            data-selectable-paragraph>Part 4. Data Structures</h1>
+                                        <h2 id=eeb7
+                                            class="lv la gu bf lb lw lx hv le ly lz hy lh hz ma ib ll ic mb ie lp if mc ih lt md hr"
+                                            data-selectable-paragraph>12. Python dictionary methods</h2>
+                                        <ul>
+                                            <li id=c280
+                                                class="kd ke gu kf b ht me kh ki hw mf kk kl km mg ko kp kq mh ks kt ku mi kw kx ky mj mk ml hr"
+                                                data-selectable-paragraph>To check if a key is in a dictionary, use
+                                                <code class="mm mn mo mp mq b">key in my_dict</code>
+                                            <li id=de65
+                                                class="kd ke gu kf b ht mr kh ki hw ms kk kl km mt ko kp kq mu ks kt ku mv kw kx ky mj mk ml hr"
+                                                data-selectable-paragraph><code
+                                                    class="mm mn mo mp mq b">my_dict[key]</code> accesses an item in the
+                                                dictionary and returns a <code class="mm mn mo mp mq b">KeyError</code>
+                                                if the key isn’t in the dictionary. To avoid an error use <code
+                                                    class="mm mn mo mp mq b">my_dict.get(key, default_value=None)</code>
+                                                which returns <code class="mm mn mo mp mq b">default_value</code>
+                                                instead of an error if the key isn’t in the dictionary
+                                            <li id=5a43
+                                                class="kd ke gu kf b ht mr kh ki hw ms kk kl km mt ko kp kq mu ks kt ku mv kw kx ky mj mk ml hr"
+                                                data-selectable-paragraph>To remove a key from a dictionary, use <code
+                                                    class="mm mn mo mp mq b">del my_dict[key]</code> if you know the
+                                                <code class="mm mn mo mp mq b">key</code> is in <code
+                                                    class="mm mn mo mp mq b">my_dict</code>. Otherwise, use <code
+                                                    class="mm mn mo mp mq b">my_dict.pop(key, None)</code> which will
+                                                return <code class="mm mn mo mp mq b">None</code> if <code
+                                                    class="mm mn mo mp mq b">key</code> is not in <code
+                                                    class="mm mn mo mp mq b">my_dict</code>
+                                            <li id=6342
+                                                class="kd ke gu kf b ht mr kh ki hw ms kk kl km mt ko kp kq mu ks kt ku mv kw kx ky mj mk ml hr"
+                                                data-selectable-paragraph><code
+                                                    class="mm mn mo mp mq b">my_dict.setdefault(key,
+                                                    default_value)</code> returns the current value for <code
+                                                    class="mm mn mo mp mq b">key</code> if it is in <code
+                                                    class="mm mn mo mp mq b">my_dict</code>, if not, it sets it to <code
+                                                    class="mm mn mo mp mq b">default_value</code> and returns that
+                                            <li id=2738
+                                                class="kd ke gu kf b ht mr kh ki hw ms kk kl km mt ko kp kq mu ks kt ku mv kw kx ky mj mk ml hr"
+                                                data-selectable-paragraph><code
+                                                    class="mm mn mo mp mq b">setdefault</code> is <strong
+                                                    class="kf gv">especially helpful</strong> for counting elements,
+                                                where you can do something like <code
+                                                    class="mm mn mo mp mq b">counts[element] =
+                                                    counts.setdefault(element, 0) + 1</code>
+                                            <li id=505b
+                                                class="kd ke gu kf b ht mr kh ki hw ms kk kl km mt ko kp kq mu ks kt ku mv kw kx ky mj mk ml hr"
+                                                data-selectable-paragraph><code
+                                                    class="mm mn mo mp mq b">my_dict.keys()</code> , <code
+                                                    class="mm mn mo mp mq b">my_dict.values()</code>, and <code
+                                                    class="mm mn mo mp mq b">my_dict.items()</code> will return a list
+                                                of the keys, values, and tuples of <code class="mm mn mo mp mq b">(key,
+                                                    value)</code> from the dictionary respectively (these are helpful
+                                                for iteration)
+                                            <li id=4180
+                                                class="kd ke gu kf b ht mr kh ki hw ms kk kl km mt ko kp kq mu ks kt ku mv kw kx ky mj mk ml hr"
+                                                data-selectable-paragraph>You can use dictionary comprehension, much
+                                                like list comprehension to create new dictionaries
+                                        </ul>
+                                        <pre
+                                            class="my mz na nb nc nm nn no"><span id=1509 class="hr lv la gu mq b dn np nq s nr" data-selectable-paragraph>my_basket = {'apple': 2, 'banana': 3, 'starfruit': 1}<br>double_my_basket = {k:v*2 for (k, v) in my_basket.items()}<br>print(double_my_basket) # {'apple': 4, 'banana': 6, 'starfruit': 2}</span></pre>
+                                        <ul>
+                                            <li id=d1e4
+                                                class="kd ke gu kf b ht kg kh ki hw kj kk kl km kn ko kp kq kr ks kt ku kv kw kx ky mj mk ml hr"
+                                                data-selectable-paragraph>For sets and dictionaries you can use the
+                                                merge and update operators <code class="mm mn mo mp mq b">|</code> and
+                                                <code class="mm mn mo mp mq b">|=</code> respectively to add keys and
+                                                values (only available for dictionaries as of Python 3.9)
+                                        </ul>
+                                        <pre
+                                            class="my mz na nb nc nm nn no"><span id=0092 class="hr lv la gu mq b dn np nq s nr" data-selectable-paragraph>a = {1, 2, 3} # New set<br>a += {4} # ❌ Returns a `TypeError`<br>a |= {4} # ✅ {1, 2, 3, 4}</span></pre>
+                                        <h2 id=9614
+                                            class="lv la gu bf lb lw lx hv le ly lz hy lh hz ma ib ll ic mb ie lp if mc ih lt md hr"
+                                            data-selectable-paragraph>13. Using OrderedDict</h2>
+                                        <ul>
+                                            <li id=ebfa
+                                                class="kd ke gu kf b ht me kh ki hw mf kk kl km mg ko kp kq mh ks kt ku mi kw kx ky mj mk ml hr"
+                                                data-selectable-paragraph><code
+                                                    class="mm mn mo mp mq b">OrderedDict</code> isn’t used very
+                                                frequently, but it can make some problems such as <a class="ek mw"
+                                                    href=https://leetcode.com/problems/lru-cache/
+                                                    rel="noopener ugc nofollow" target=_blank>implementing an LRU
+                                                    cache</a> almost trivial. An <code
+                                                    class="mm mn mo mp mq b">OrderedDict</code> is effectively a
+                                                dictionary combined with a doubly-linked list for ordering
+                                            <li id=2ede
+                                                class="kd ke gu kf b ht mr kh ki hw ms kk kl km mt ko kp kq mu ks kt ku mv kw kx ky mj mk ml hr"
+                                                data-selectable-paragraph><code
+                                                    class="mm mn mo mp mq b">OrderedDict</code> has a <code
+                                                    class="mm mn mo mp mq b">.popitem()</code> method which lets you
+                                                remove items in LIFO (last-in, first-out) order (<code
+                                                    class="mm mn mo mp mq b">popitem(last=False)</code> will remove
+                                                items in FIFO order).
+                                            <li id=7401
+                                                class="kd ke gu kf b ht mr kh ki hw ms kk kl km mt ko kp kq mu ks kt ku mv kw kx ky mj mk ml hr"
+                                                data-selectable-paragraph>Also <code
+                                                    class="mm mn mo mp mq b">.move_to_end(item_key)</code> let’s you
+                                                move an item to the end of the dictionary (so it can be popped next).
+                                                <code class="mm mn mo mp mq b">.move_to_end(item_key, last=False)</code>
+                                                lets you move an item to the beginning.
+                                        </ul>
+                                        <h2 id=8c10
+                                            class="lv la gu bf lb lw lx hv le ly lz hy lh hz ma ib ll ic mb ie lp if mc ih lt md hr"
+                                            data-selectable-paragraph><strong class=ci>14. Using
+                                                collections.Counter</strong></h2>
+                                        <ul>
+                                            <li id=8612
+                                                class="kd ke gu kf b ht me kh ki hw mf kk kl km mg ko kp kq mh ks kt ku mi kw kx ky mj mk ml hr"
+                                                data-selectable-paragraph>Frequently, interview questions involve adding
+                                                counts to a hash map. For this, you can just use <code
+                                                    class="mm mn mo mp mq b">collections.Counter</code> like below. A
+                                                <code class="mm mn mo mp mq b">Counter</code> is a subclass of <code
+                                                    class="mm mn mo mp mq b">dict</code> and you can interact with it
+                                                like it is one.
+                                        </ul>
+                                        <pre
+                                            class="my mz na nb nc nm nn no"><span id=9842 class="hr lv la gu mq b dn np nq s nr" data-selectable-paragraph>things = ['a', 'a', 'b', 'c', 'b', 'b']<br>counts = collections.Counter(things)<br>print(counts) # Counter({'b': 3, 'a': 2, 'c': 1})</span></pre>
+                                        <h2 id=23c2
+                                            class="lv la gu bf lb lw lx hv le ly lz hy lh hz ma ib ll ic mb ie lp if mc ih lt md hr"
+                                            data-selectable-paragraph><strong class=ci>15. Using heapq</strong></h2>
+                                        <ul>
+                                            <li id=4289
+                                                class="kd ke gu kf b ht me kh ki hw mf kk kl km mg ko kp kq mh ks kt ku mi kw kx ky mj mk ml hr"
+                                                data-selectable-paragraph>Don’t use <code
+                                                    class="mm mn mo mp mq b">queue.PriorityQueue</code>, <code
+                                                    class="mm mn mo mp mq b">heapq</code> is more flexible
+                                            <li id=dfa1
+                                                class="kd ke gu kf b ht mr kh ki hw ms kk kl km mt ko kp kq mu ks kt ku mv kw kx ky mj mk ml hr"
+                                                data-selectable-paragraph>Read through <a class="ek mw"
+                                                    href=https://docs.python.org/3/library/heapq.html
+                                                    rel="noopener ugc nofollow" target=_blank>the official heapq
+                                                    documentation</a>—some callouts below
+                                            <li id=80f4
+                                                class="kd ke gu kf b ht mr kh ki hw ms kk kl km mt ko kp kq mu ks kt ku mv kw kx ky mj mk ml hr"
+                                                data-selectable-paragraph><code class="mm mn mo mp mq b">heapify</code>
+                                                is in-place, so <code class="mm mn mo mp mq b">heapify(list)</code> will
+                                                turn <code class="mm mn mo mp mq b">list</code> into a heap
+                                            <li id=b720
+                                                class="kd ke gu kf b ht mr kh ki hw ms kk kl km mt ko kp kq mu ks kt ku mv kw kx ky mj mk ml hr"
+                                                data-selectable-paragraph><code class="mm mn mo mp mq b">heapq</code>
+                                                only supports min-heaps, for a max-heap, multiply all values by <code
+                                                    class="mm mn mo mp mq b">-1</code> before heapifying and multiply by
+                                                <code class="mm mn mo mp mq b">-1</code> after popping (annoying, I
+                                                know)
+                                            <li id=53e9
+                                                class="kd ke gu kf b ht mr kh ki hw ms kk kl km mt ko kp kq mu ks kt ku mv kw kx ky mj mk ml hr"
+                                                data-selectable-paragraph>If you want to create a heap for objects, you
+                                                should add them as a tuple with <code
+                                                    class="mm mn mo mp mq b">(priority, counter, object)</code> . <code
+                                                    class="mm mn mo mp mq b">counter</code> is a unique number to break
+                                                priority ties (otherwise you’ll get an error). I start <code
+                                                    class="mm mn mo mp mq b">counter</code> at 0 and increment it
+                                                whenever I push to the heap.
+                                        </ul>
+                                        <h2 id=2fd5
+                                            class="lv la gu bf lb lw lx hv le ly lz hy lh hz ma ib ll ic mb ie lp if mc ih lt md hr"
+                                            data-selectable-paragraph>16. Implementing a Tree</h2>
+                                        <ul>
+                                            <li id=6cce
+                                                class="kd ke gu kf b ht me kh ki hw mf kk kl km mg ko kp kq mh ks kt ku mi kw kx ky mj mk ml hr"
+                                                data-selectable-paragraph>There aren’t any Tree data structures that are
+                                                helpful for interviews in <a class="ek mw"
+                                                    href=https://docs.python.org/3.9/library/index.html
+                                                    rel="noopener ugc nofollow" target=_blank>Python’s standard
+                                                    library</a>, so you’ll need to implement your own
+                                            <li id=5460
+                                                class="kd ke gu kf b ht mr kh ki hw ms kk kl km mt ko kp kq mu ks kt ku mv kw kx ky mj mk ml hr"
+                                                data-selectable-paragraph>For a binary tree, you can create a Node class
+                                                with left and right Node attributes. Make sure to keep track of the
+                                                “head” Node in your code.
+                                            <li id=d304
+                                                class="kd ke gu kf b ht mr kh ki hw ms kk kl km mt ko kp kq mu ks kt ku mv kw kx ky mj mk ml hr"
+                                                data-selectable-paragraph>For a non-binary tree, you can use an array or
+                                                a dictionary for the children. If you don’t expect children with
+                                                duplicate values and want <code class="mm mn mo mp mq b">O(1)</code>
+                                                lookup, a dictionary might be better.
+                                        </ul>
+                                        <pre
+                                            class="my mz na nb nc nm nn no"><span id=6354 class="hr lv la gu mq b dn np nq s nr" data-selectable-paragraph># Binary Tree Node<br>class Node:<br>  def __init__(value):<br>    self.value = value<br>    self.left = None<br>    self.right = None</span><span id=5961 class="hr lv la gu mq b dn ns nt nu nv nw nq s nr" data-selectable-paragraph># Non-Binary Tree Node<br>class Node:<br>  def __init__(value):<br>    self.value = value<br>    self.children = [] # or self.children = {} for dict</span></pre>
+                                        <h2 id=0504
+                                            class="lv la gu bf lb lw lx hv le ly lz hy lh hz ma ib ll ic mb ie lp if mc ih lt md hr"
+                                            data-selectable-paragraph><strong class=ci>17. Implementing a Trie</strong>
+                                        </h2>
+                                        <ul>
+                                            <li id=aef7
+                                                class="kd ke gu kf b ht me kh ki hw mf kk kl km mg ko kp kq mh ks kt ku mi kw kx ky mj mk ml hr"
+                                                data-selectable-paragraph>There is no Trie in Python’s standard
+                                                libraries, but you can implement one easily. Here’s one with just <code
+                                                    class="mm mn mo mp mq b">insert</code> and <code
+                                                    class="mm mn mo mp mq b">search</code> functionality and you can
+                                                build additional functionality on top of this.
+                                        </ul>
+                                        <pre
+                                            class="my mz na nb nc nm nn no"><span id=9436 class="hr lv la gu mq b dn np nq s nr" data-selectable-paragraph>class TrieNode:<br>    def __init__(self):<br>        self.is_complete_word = False<br>        self.children = {}</span><span id=8fe4 class="hr lv la gu mq b dn ns nt nu nv nw nq s nr" data-selectable-paragraph>class Trie:<br>    def __init__(self):<br>        # Blank Trie<br>        self.root = TrieNode()<br>        <br>    def insert(self, word: str) -&gt; None:<br>        """<br>        Insert a word:<br>        — Iterate through all characters in the word<br>        - If we we encounter a char we don't have a<br>          node for, create a new node<br>        - Mark the last node as a complete word<br>        """<br>        curr = self.root<br>        for char in word:<br>            curr = curr.children.setdefault(char, TrieNode())    <br>        curr.is_complete_word = True<br>        <br>    def search(self, word: str) -&gt; bool:<br>        """<br>        Search for a word:<br>        — Iterate through all characters in the word<br>        - If we we encounter a char we don't have a<br>          node for, return False<br>        - At the last node, return whether the word<br>          is a complete word in our Trie<br>        """<br>        curr = self.root<br>        for char in word:<br>            if char not in curr.children:<br>                return False<br>            curr = curr.children[char] <br>        return curr.is_complete_word</span></pre>
+                                        <h1 id=7002
+                                            class="kz la gu bf lb lc ld kh le lf lg kk lh li lj lk ll lm ln lo lp lq lr ls lt lu hr"
+                                            data-selectable-paragraph>Part 4: Recursion &amp; Dynamic Programming</h1>
+                                        <h2 id=ae68
+                                            class="lv la gu bf lb lw lx hv le ly lz hy lh hz ma ib ll ic mb ie lp if mc ih lt md hr"
+                                            data-selectable-paragraph>18. Memoize using a decorator</h2>
+                                        <p id=24fa
+                                            class="pw-post-body-paragraph kd ke gu kf b ht me kh ki hw mf kk kl km mg ko kp kq mh ks kt ku mi kw kx ky gn hr"
+                                            data-selectable-paragraph>Just add the <code
+                                                class="mm mn mo mp mq b">@cache</code> decorator
+                                            <pre
+                                                class="my mz na nb nc nm nn no"><span id=0b80 class="hr lv la gu mq b dn np nq s nr" data-selectable-paragraph># No memoization O(2**N) time complexity<br>def fib(n):<br>  return fib(n - 1) + fib(n - 2) if n &gt; 1 else n</span><span id=69dd class="hr lv la gu mq b dn ns nt nu nv nw nq s nr" data-selectable-paragraph># Memoized, now O(N) time complexity<br><strong class="mq gv">from functools import cache<br>@cache</strong><br>def fib(n):<br>  return fib(n - 1) + fib(n - 2) if n &gt; 1 else n</span><span id=0977 class="hr lv la gu mq b dn ns nt nu nv nw nq s nr" data-selectable-paragraph># Similar to doing this<br>memo = {}<br>def fib(n):<br>  return memo.setdefault(n, fib(n - 1) + fib(n - 2) if n &gt; 1 else n)</span><span id=ec78 class="hr lv la gu mq b dn ns nt nu nv nw nq s nr" data-selectable-paragraph># You can limit the memo size to N<br># using lru_cache (here N = 64)<br><strong class="mq gv">from functools import lru_cache<br>@lru_cache(64)</strong><br>def fib(n):<br>  return fib(n - 1) + fib(n - 2) if n &gt; 1 else n</span></pre>
+                                            <h2 id=c650
+                                                class="lv la gu bf lb lw lx hv le ly lz hy lh hz ma ib ll ic mb ie lp if mc ih lt md hr"
+                                                data-selectable-paragraph>19. Making recursive programs iterative</h2>
+                                            <p id=8f0f
+                                                class="pw-post-body-paragraph kd ke gu kf b ht me kh ki hw mf kk kl km mg ko kp kq mh ks kt ku mi kw kx ky gn hr"
+                                                data-selectable-paragraph>Here’s an example of making an iterative
+                                                Fibonacci function using tabulation (<code
+                                                    class="mm mn mo mp mq b">O(n)</code> space complexity).
+                                                <pre
+                                                    class="my mz na nb nc nm nn no"><span id=56d5 class="hr lv la gu mq b dn np nq s nr" data-selectable-paragraph>def fib(n):<br>  fibs = [None] * n<br>  fibs[0], fibs[1] = 0, 1<br>  for i in range(2, n):<br>    fib[i] = fib[i - 1] + fib[i - 2]<br>  return fib[i]</span></pre>
+                                                <p id=4978
+                                                    class="pw-post-body-paragraph kd ke gu kf b ht kg kh ki hw kj kk kl km kn ko kp kq kr ks kt ku kv kw kx ky gn hr"
+                                                    data-selectable-paragraph>And here’s an <code
+                                                        class="mm mn mo mp mq b">O(1)</code> space complexity version.
+                                                    <pre
+                                                        class="my mz na nb nc nm nn no"><span id=5833 class="hr lv la gu mq b dn np nq s nr" data-selectable-paragraph>def fib(n):<br>  if n &lt;= 1:<br>    return n<br>  first, second = 0, 1<br>  for i in range(2, n + 1):<br>    first, second = second, first + second<br>  return second</span></pre>
+                                                    <p id=09c8
+                                                        class="pw-post-body-paragraph kd ke gu kf b ht kg kh ki hw kj kk kl km kn ko kp kq kr ks kt ku kv kw kx ky gn hr"
+                                                        data-selectable-paragraph>Another way to make a program
+                                                        iterative is to create your own stack. <a class="ek mw"
+                                                            href=https://stackoverflow.com/questions/159590/way-to-go-from-recursion-to-iteration/159777#159777
+                                                            rel="noopener ugc nofollow" target=_blank>This answer</a>
+                                                        from StackOverflow does a great job explaining how.<h1 id=8c2e
+                                                            class="kz la gu bf lb lc ld kh le lf lg kk lh li lj lk ll lm ln lo lp lq lr ls lt lu hr"
+                                                            data-selectable-paragraph><strong class=ci>Part 4:
+                                                                Misc</strong></h1>
+                                                        <h2 id=5594
+                                                            class="lv la gu bf lb lw lx hv le ly lz hy lh hz ma ib ll ic mb ie lp if mc ih lt md hr"
+                                                            data-selectable-paragraph>20. Ternary if operator</h2>
+                                                        <ul>
+                                                            <li id=ad0b
+                                                                class="kd ke gu kf b ht me kh ki hw mf kk kl km mg ko kp kq mh ks kt ku mi kw kx ky mj mk ml hr"
+                                                                data-selectable-paragraph><code
+                                                                    class="mm mn mo mp mq b">condition ? a : b</code> in
+                                                                other languages is <code class="mm mn mo mp mq b">a if
+                                                                    condition else b</code> in Python
+                                                        </ul>
+                                                        <h2 id=fec4
+                                                            class="lv la gu bf lb lw lx hv le ly lz hy lh hz ma ib ll ic mb ie lp if mc ih lt md hr"
+                                                            data-selectable-paragraph><strong class=ci>21. Manipulate
+                                                                binary strings</strong></h2>
+                                                        <ul>
+                                                            <li id=124b
+                                                                class="kd ke gu kf b ht me kh ki hw mf kk kl km mg ko kp kq mh ks kt ku mi kw kx ky mj mk ml hr"
+                                                                data-selectable-paragraph>Get rid of the annoying <code
+                                                                    class="mm mn mo mp mq b">0b</code> prefix after
+                                                                using <code class="mm mn mo mp mq b">bin</code> via
+                                                                slicing—for example, <code
+                                                                    class="mm mn mo mp mq b">bin(7) = "0b111</code> so
+                                                                <code class="mm mn mo mp mq b">bin(7)[2:] = "111"</code>
+                                                            <li id=3a1c
+                                                                class="kd ke gu kf b ht mr kh ki hw ms kk kl km mt ko kp kq mu ks kt ku mv kw kx ky mj mk ml hr"
+                                                                data-selectable-paragraph>To add leading zeros up to N
+                                                                digits, add <code class="mm mn mo mp mq b">2**N</code>
+                                                                and then slice—for example, to pad <code
+                                                                    class="mm mn mo mp mq b">111</code> with zeros until
+                                                                it’s 5 digits long, do <code
+                                                                    class="mm mn mo mp mq b">bin(2**5 + 7)[3:] =
+                                                                    “00111”</code> (note that <code
+                                                                    class="mm mn mo mp mq b">2**N &gt; num</code> for
+                                                                this to work)
+                                                        </ul>
+                                                        <h2 id=27a2
+                                                            class="lv la gu bf lb lw lx hv le ly lz hy lh hz ma ib ll ic mb ie lp if mc ih lt md hr"
+                                                            data-selectable-paragraph>22. Mutable vs. immutable objects
+                                                        </h2>
+                                                        <p id=457c
+                                                            class="pw-post-body-paragraph kd ke gu kf b ht me kh ki hw mf kk kl km mg ko kp kq mh ks kt ku mi kw kx ky gn hr"
+                                                            data-selectable-paragraph>A mutable object can be changed
+                                                            and an immutable object can’t. Here’s a list of built-in
+                                                            types and whether they are immutable. Custom classes are
+                                                            usually mutable.<p id=5bf0
+                                                                class="pw-post-body-paragraph kd ke gu kf b ht kg kh ki hw kj kk kl km kn ko kp kq kr ks kt ku kv kw kx ky gn hr"
+                                                                data-selectable-paragraph>This just means you need to be
+                                                                careful with creating variables from existing variables
+                                                                for mutable objects. You could unintentionally change
+                                                                the existing object!
+                                                                <pre
+                                                                    class="my mz na nb nc nm nn no"><span id=9f9a class="hr lv la gu mq b dn np nq s nr" data-selectable-paragraph>ones = [1] * 3<br>twos = ones<br>for i, _ in enumerate(twos):<br>  twos[i] = 2<br>print(twos) # [2, 2, 2]<br>print(ones) # Also [2, 2, 2]!</span></pre>
+                                                                <p id=18cf
+                                                                    class="pw-post-body-paragraph kd ke gu kf b ht kg kh ki hw kj kk kl km kn ko kp kq kr ks kt ku kv kw kx ky gn hr"
+                                                                    data-selectable-paragraph>To avoid this, you need to
+                                                                    create a copy from the variable.
+                                                                    <pre
+                                                                        class="my mz na nb nc nm nn no"><span id=cdf2 class="hr lv la gu mq b dn np nq s nr" data-selectable-paragraph>ones = [1] * 3<br><strong class="mq gv">twos = list(ones) # Creates a copy instead</strong><br>for i, _ in enumerate(twos):<br>  twos[i] = 2<br>print(twos) # [2, 2, 2]<br>print(ones) # [1, 1, 1]</span><span id=a2c6 class="hr lv la gu mq b dn ns nt nu nv nw nq s nr" data-selectable-paragraph><strong class="mq gv"># or using list comprehension<br></strong>twos = [2 for i in ones]<br>print(twos) # [2, 2, 2]<br>print(ones) # [1, 1, 1]</span></pre>
+                                                                    <p id=ea81
+                                                                        class="pw-post-body-paragraph kd ke gu kf b ht kg kh ki hw kj kk kl km kn ko kp kq kr ks kt ku kv kw kx ky gn hr"
+                                                                        data-selectable-paragraph>Please comment if you
+                                                                        have any questions or additional suggestions,
+                                                                        and best of luck to those of you interviewing!
+                                                                    </p>
+        </div>
+    </div>
