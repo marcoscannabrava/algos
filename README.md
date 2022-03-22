@@ -1,7 +1,7 @@
 # Data Structures & Algorithms
 
 # #wip #todo
-- [10 Most Important Concepts For Coding Interviews](https://youtu.be/Ge0Udbws1kc)
+- [Top 10 algorithms in Interview Questions - GeeksforGeeks](https://www.geeksforgeeks.org/top-10-algorithms-in-interview-questions/)
 
 - Interview Kickstart videos
   - [Coding Demo by Omkar Deshpande](https://www.youtube.com/watch?v=uH-q8ZpHTOE&ab_channel=InterviewKickstart)
@@ -12,8 +12,6 @@
 
 
 problems
-- invert binary tree ✅
-- reverse linked list ✅
 - [Top Patterns to Conquer the Interview - Getting Started / Overview](https://algo.monster/problems/stats)
 - suffix trees
   - [Trie Data Structure | Interview Cake](https://www.interviewcake.com/concept/java/trie)
@@ -63,7 +61,6 @@ Dynamic Programming
 - Factorial: O(n!)
 
 # Resources
-- [⭐Algorithms Study](https://docs.google.com/document/d/1Sb1CxUzN3mrmnlNSDXbkoUaUkoMxaC6dkdD4EOA6-eA/edit#)
 - [14 Patterns to Ace Any Coding Interview Question | Hacker Noon](https://hackernoon.com/14-patterns-to-ace-any-coding-interview-question-c5bb3357f6ed)
 - [Introduction to Algorithms Book](https://edutechlearners.com/download/Introduction_to_algorithms-3rd%20Edition.pdf)
 - [Grokking Algorithms - An Illustrated Guide for programmers and other curious people](https://www.amazon.com/Grokking-Algorithms-illustrated-programmers-curious/dp/1617292230)
@@ -72,7 +69,9 @@ Dynamic Programming
 - [Cracking The Coding Interview Solutions](https://quastor.org/cracking-the-coding-interview/arrays-and-strings/is-unique) + `code ~/code/algos/CtCI-6th-Edition-Python`
 - [Top 75 Leetcode Questions according to FB engineer with patterns](https://docs.google.com/spreadsheets/d/1bg5Qx1TdbmYZnsBHDZqb5QvbrrPic9AFI2MxSTlDDl4/edit#gid=0)
 - [Coding interview cheatsheet | Tech Interview Handbook](https://www.techinterviewhandbook.org/cheatsheet/) - read before interview ❗ #1good
-
+- [⭐Algorithms Study](https://docs.google.com/document/d/1Sb1CxUzN3mrmnlNSDXbkoUaUkoMxaC6dkdD4EOA6-eA/edit#)
+- [⭐ 19 helpful python syntax patterns](https://towardsdatascience.com/19-helpful-python-syntax-patterns-for-coding-interviews-3704c15b758f)
+- [Syllabus](https://www.swecareers.com/learn/data-structures-and-algorithms)
 
 # Practice Problems
 - [Sean Prashad - Leetcode Patterns](https://seanprashad.com/leetcode-patterns/) (https://github.com/seanprashad/leetcode-patterns)
@@ -81,14 +80,12 @@ Dynamic Programming
 - https://www.enjoyalgorithms.com/coding-interview/
 
 
-## Others
-## DS & Algorithms #wip
-- https://docs.google.com/document/d/1Sb1CxUzN3mrmnlNSDXbkoUaUkoMxaC6dkdD4EOA6-eA/edit#heading=h.o0mx0qbl9rxk
-- https://towardsdatascience.com/19-helpful-python-syntax-patterns-for-coding-interviews-3704c15b758f
-- [Syllabus](https://www.swecareers.com/learn/data-structures-and-algorithms)
-[[data-structures]]
-
 
 # Best Websites
 - [GeeksforGeeks | A computer science portal for geeks](https://www.geeksforgeeks.org/)
 - [AlgoMonster](https://algo.monster/)
+
+
+
+# Done
+- [10 Most Important Concepts For Coding Interviews](https://youtu.be/Ge0Udbws1kc)

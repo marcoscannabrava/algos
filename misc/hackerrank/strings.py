@@ -7,6 +7,10 @@ def number_needed(a, b):
     return sum(abs(i) for i in ct_a.values())
 
 # ------------------- Sherlock and the Valid String -------------------
+"""
+'aabbccd' --> d = { 2: 3, 1: 1}
+'aaabbbccd' --> d = { 2: 3, 1: 1}
+"""
 from collections import Counter
 def isValid(s):
     d = Counter(Counter(s).values())
@@ -18,6 +22,7 @@ def isValid(s):
         return "YES"
     else:
         return "NO"
+
 
 print(isValid(input()))
 
