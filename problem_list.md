@@ -1,5 +1,11 @@
 # Problem List
 
+## #todo
+- DP: look up n-stairs problem
+- study file:///home/marcos/code/algos/cs/recursion/foreign_change_problem.js
+  - https://leetcode.com/discuss/interview-question/999637/facebook-online-change-in-a-foreign-currency
+  - https://www.facebookrecruiting.com/portal/coding_practice_question/?problem_id=2903692913051025&ppid=454615229006519&practice_plan=0
+
 ## From Google
 - [ ] For a given unsorted array “X,”consisting of non-negative integers, write a code to find the contiguous subarray that adds to the sum “S” of non-negative integers in the array.
 - [ ] For a given array “X,” consisting of non-negative integer characters, write a code to find the contiguous subarray with the maximum sum.
